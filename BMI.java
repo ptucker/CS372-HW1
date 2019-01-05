@@ -37,11 +37,11 @@ public class BMI
         
 		System.out.println("You entered " + heightInInches + " in.");
 
-		weightinKG = weightInPounds / 2.205;  
-		heightinM = heightInInches / 39.37;      
+		weightinKG = weightInPounds / 2.205;  //Conversion from pounds to kg
+		heightinM = heightInInches / 39.37;   //Conversion from inches to m
 		BMI = weightinKG / (heightinM * heightinM);
-        
-		System.out.println("Your BMI is " + BMI);
+  //Fomula for SI BMI       
+		System.out.printf("Your BMI is %f", BMI);
         
 		
 
@@ -60,7 +60,7 @@ public class BMI
 		System.out.println("");
         
 		if (BMI < 18.5)
-            
+      //Tells the user where the fall in the calculation
 			System.out.println("You are underweight");
             
 		else if (18.5 <= BMI && BMI <= 24.9)

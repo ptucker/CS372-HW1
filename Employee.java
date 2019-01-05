@@ -38,9 +38,9 @@ public class Employee
 	public void setName(String n)
  {
  name = n;
- }
+ }  //Get and set every variable
 	public String getName() { return name; }
- 
+     //If not wanting to create a default employee
 	public void setID(int id) { ID = id; }
 	public int getID() { return ID; }
 	public void sethireDate(String hd) { hireDate = hd; }

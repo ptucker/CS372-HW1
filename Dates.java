@@ -8,6 +8,7 @@
 import java.util.*;
 import java.text.SimpleDateFormat;
 
+//I tried to make a DatesTest class, but the console wasn't recognizing the functions in Dates correctly.
 public class Dates 
 {
     
@@ -36,11 +37,11 @@ public class Dates
 		year = y;
 	}
 	public void setMonth(int m)
-    
+     //This takes the date a month at a time, and if,
 	{
-        
+        			// for example, the user tries to enter April 31th, 
 		if (1 <= m && m <=12)
-        
+   //The date will be taken from the default constructor instead     
 		{
             
 			month = m;
@@ -81,11 +82,11 @@ public class Dates
         
 			}
     
-				else if (month == 2)
-        
+				else if ((month == 2) && (year % 4 == 0))
+   // leap year instance     
 				{
             
-					if (1 <= d && d <= 28)
+					if (1 <= d && d <= 29)
             
 					{
 				
@@ -95,6 +96,11 @@ public class Dates
         
 				}
     
+					else if (( month == 2) && (year % 4 != 0))
+						if (1 <= d && d <= 28)
+						{
+							day = d;
+						}	
 	}
     
 	public void setYear(int y) { year = y; }
@@ -106,7 +112,7 @@ public class Dates
 	public int getYear() { return year; }
     
 	public void displayDate(int m, int d, int y)
-    
+    //Prints date in readable format
 	{
         
 		System.out.println("The date entered is " + m + "/" + d + "/" + y);
@@ -114,9 +120,9 @@ public class Dates
 	}
     
 
-	public static void dateDifference(Dates d1, Dates d2)
-	{
-		int day;	
+	public static void dateDifference(Dates d1, Dates d2)  //Although this function isn't "smart" (months are assumed to be 30 days,
+	{						       //years are assumed to be 365 days), I used the difference in terms of days
+		int day;				       //and by converting years & months to days, found an "integer" value for the dates
 		int month;
 		int year;
 		int diff;
@@ -124,36 +130,55 @@ public class Dates
 		month = (d1.getMonth() - d2.getMonth()) * 30;
 		day = d1.getDay() - d2.getDay();
 		diff = day + month + year;
-		System.out.print("There are " + diff + " days between the two dates");
+		System.out.println("There are " + diff + " days between the two dates");
 	}
 	
-	public void futureDate(Date d1)
-	{
-		
-	}
-	
+	public static void futureDate(Dates d1, int n)    //Again found an int value for the date,  used mod to find the day first, subtracted the excess days to find 
+	{						  //the new month number, then subtracted the excess months to find the new year 
+		int sum, mod1, dayV, monthV, yearV;	
+		sum = ((d1.getYear() * 365) + (d1.getMonth() * 30) + (d1.getDay() + n));
+		mod1 = sum % 365;
+		dayV = mod1 % 30;
+		monthV = ((mod1 - dayV) % 30);
+		yearV = ((sum - mod1) / 365);
+		d1.setDay(dayV); 
+		d1.setMonth(monthV);
+		d1.setYear(yearV);
+	}  
+
+
 	public static void main(String args[]) 
 	{
         
 		Dates d1 = new Dates();
  
+		Dates leap = new Dates();
 		Dates today = new Dates();
 		d1.setMonth(9);
-		d1.setDay(31);
-		d1.setYear(2020);       
+		d1.setDay(31);   			//Create a date that doesn't exist; should default to constructor
+		d1.setYear(2020);      
         
 		d1.displayDate(d1.getMonth(), d1.getDay(), d1.getYear());
 
+
+		leap.setMonth(2);
+		leap.setYear(2020);  //Create a leap year date
+		leap.setDay(29);
+		      
+        
+		leap.displayDate(leap.getMonth(), leap.getDay(), leap.getYear());
+
 		
 		
-		today.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+		today.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));  	//From java library to find current date
 		today.setMonth(Calendar.getInstance().get(Calendar.MONTH + 1));
 		today.setYear(Calendar.getInstance().get(Calendar.YEAR));
-		today.displayDate(today.getMonth(), today.getDay(), today.getYear());
+		System.out.println("The current date is " + today.getMonth() + "/" + today.getDay() + "/" + today.getYear());
 		
-		dateDifference(d1, today);
+		dateDifference(d1, today); 		//Find the difference between d1 and the current date
+		futureDate(d1, 300);			  //Find the date 300 days in the future
+		System.out.println("the future date is " + d1.getMonth() + "/" + d1.getDay() + "/" + d1.getYear());
  
 		
-	}   
-
+	} 
 }

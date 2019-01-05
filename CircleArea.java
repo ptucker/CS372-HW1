@@ -26,7 +26,7 @@ public class CircleArea
 		System.out.print("Enter the radius of the circle: ");
        
 		radius = scrn.nextInt();
-       
+       //Next int to be entered is the radius
 		System.out.println("You entered " + radius);
        
 		area = (radius * radius * PI);
