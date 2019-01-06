@@ -15,6 +15,8 @@ public class StringtoInt {
 		System.out.print("Enter a string of numbers ");
 		Scanner snr = new Scanner(System.in);
 		user = snr.nextLine();
+		//PT -- this would be more readable:
+		//  while (user.charAt(0) < '0' || user.charAt(0) > '9') 
 		while (user.charAt(0) < 48 || user.charAt(0) > 57) //48-57 are the ASCII values for 0-9
 		{						   //LN11: while a number isn't entered, ask for a new number
 			System.out.print("That is not valid. Enter a valid number ");
