@@ -27,6 +27,7 @@ public class BMI
         
 		System.out.println("Enter your weight in pounds: ");
         
+		//PT -- the variable is a double, but you're reading an int.
 		weightInPounds = scnr.nextInt();
         
 		System.out.println("You entered " + weightInPounds + " lbs.");
