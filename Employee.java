@@ -50,6 +50,6 @@ public class Employee
 	public void sethigherUp(String hu) { higherUp = hu; }
 	public String gethigherUp() { return higherUp; }     
           
-       
+       //PT -- consider overriding toString() as well
 
 }
