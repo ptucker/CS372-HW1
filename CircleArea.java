@@ -24,7 +24,7 @@ public class CircleArea
 		Scanner scrn = new Scanner(System.in);
        
 		System.out.print("Enter the radius of the circle: ");
-       
+       		//PT -- scrn.nextDouble would be better here. -1
 		radius = scrn.nextInt();
        //Next int to be entered is the radius
 		System.out.println("You entered " + radius);
